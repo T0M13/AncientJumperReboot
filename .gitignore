@@ -348,3 +348,11 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+UserSettings/EditorUserSettings.asset
+
+Temp/workerlic
+
+Temp/UnityLockfile
+
+Library/EditorInstance.json
