@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90e10cf7274b8f4aa777d433b6b14d3, type: 3}
+  m_Name: BoostedPlatform
+  m_EditorClassIdentifier: 
+  name: BoostedPlatform
+  jumpForce: 35
+  despawnRange: 10
+  platformPrefab: {fileID: 7860856887266840782, guid: 48d647f85d9f4e648a7b5e98048d3605, type: 3}
+  platformType: 2
