@@ -5,7 +5,6 @@ using UnityEngine;
 public class DeathAreaManager : MonoBehaviour
 {
     public GameManager gameManager;
-    public SaveLoadScript saveloadInstance;
     public float deathTime = 1f;
 
     private void Awake()
@@ -32,26 +31,12 @@ public class DeathAreaManager : MonoBehaviour
         var playerManager = collision.GetComponent<PlayerManager>();
         playerManager.canMove = false;
 
-        SaveData(playerManager);
+        gameManager.SaveData(playerManager);
 
         yield return new WaitForSeconds(deathTime);
 
         gameManager.GameOver(playerManager.highscore);
     }
 
-    public void SaveData(PlayerManager playerManager)
-    {
-        if (saveloadInstance.highscore < playerManager.highscore)
-        {
-            saveloadInstance.highscore = Mathf.RoundToInt(playerManager.highscore);
-            saveloadInstance.coins += playerManager.coins;
-            saveloadInstance.SaveSaveData();
-        }
-        else
-        {
-            saveloadInstance.coins += playerManager.coins;
-            saveloadInstance.SaveSaveData();
-        }
 
-    }
 }

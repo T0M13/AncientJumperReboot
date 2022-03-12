@@ -15,5 +15,6 @@ MonoBehaviour:
   name: BaseGroundPlatform
   jumpForce: 15
   despawnRange: 10
+  damage: 0
   platformPrefab: {fileID: 997556037919140884, guid: 23778037bf0dcf542995c1c468532693, type: 3}
-  platformType: 3
+  platformType: 4

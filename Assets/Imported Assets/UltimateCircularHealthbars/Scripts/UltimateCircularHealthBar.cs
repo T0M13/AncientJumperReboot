@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-namespace RengeGames.HealthBars {
+
 
     [ExecuteAlways]
     [DisallowMultipleComponent]
@@ -216,7 +216,7 @@ namespace RengeGames.HealthBars {
         }
 
         public void SetRemovedSegments(float value) {
-            RemovedSegments = Mathf.Clamp(value, 0, SegmentCount);
+            RemovedSegments += Mathf.Clamp(value, 0, SegmentCount);
         }
 
         public void SetPercent(float value) {
@@ -234,4 +234,3 @@ namespace RengeGames.HealthBars {
             RemovedSegments = Mathf.Clamp(RemovedSegments, 0, SegmentCount);
         }
     }
-}

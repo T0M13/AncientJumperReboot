@@ -9,6 +9,7 @@ public class PlatformScriptableObject : ScriptableObject
     public new string name;
     public float jumpForce;
     public float despawnRange;
+    public int damage;
     public GameObject platformPrefab;
     public PlatformTypes platformType;
 
@@ -17,6 +18,7 @@ public class PlatformScriptableObject : ScriptableObject
         normal,
         breakable,
         boosted,
+        spikey,
         baseground,
 
     }

@@ -62,6 +62,16 @@ public class LevelGenerator : MonoBehaviour
                     platformIndex = (int)PlatformScriptableObject.PlatformTypes.boosted;
                 }
                 break;
+            case 3:
+                if (randomizer == platformIndex)
+                {
+                    RandomizePlatforms();
+                }
+                else
+                {
+                    platformIndex = (int)PlatformScriptableObject.PlatformTypes.spikey;
+                }
+                break;
             default:
                 platformIndex = (int)PlatformScriptableObject.PlatformTypes.normal;
                 break;

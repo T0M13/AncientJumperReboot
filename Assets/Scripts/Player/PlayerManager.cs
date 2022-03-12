@@ -8,6 +8,7 @@ public class PlayerManager : BaseCharacterManager
     public int coins;
     private GameManager gameManager;
     private UIManager uiManager;
+    public UltimateCircularHealthBar healthBar;
 
     [SerializeField] private float bounds;
     [SerializeField] private Vector3 position;
@@ -78,10 +79,20 @@ public class PlayerManager : BaseCharacterManager
 
     void CheckHealth()
     {
-        if (health <= 0)
+        if (health <= 0 && canMove)
         {
-            gameManager.GameOver(highscore);
+            StartCoroutine(SetGameOver());
         }
     }
+    IEnumerator SetGameOver()
+    {
 
+        canMove = false;
+        GetComponent<BoxCollider2D>().isTrigger = true;
+        gameManager.SaveData(this);
+
+        yield return new WaitForSeconds(1f);
+
+        gameManager.GameOver(highscore);
+    }
 }

@@ -3,10 +3,11 @@ public class GameManager : MonoBehaviour
 {
     [ContextMenuItem("Restart Level", "RestartLevel")]
     public UIManager uiManager;
+    public SaveLoadScript saveloadInstance;
 
     public float screenHeight;
     public float screenWidth;
-
+    public bool inMainMenu;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver(float _highscore)
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         uiManager.gameOverCanvas.gameObject.SetActive(true);
         uiManager.hudCanvas.gameObject.SetActive(false);
         uiManager.gameOverHighscore.text = "Highscore: " + Mathf.RoundToInt(_highscore).ToString() + "m";
@@ -68,4 +69,19 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SaveData(PlayerManager playerManager)
+    {
+        if (saveloadInstance.highscore < playerManager.highscore)
+        {
+            saveloadInstance.highscore = Mathf.RoundToInt(playerManager.highscore);
+            saveloadInstance.coins += playerManager.coins;
+            saveloadInstance.SaveSaveData();
+        }
+        else
+        {
+            saveloadInstance.coins += playerManager.coins;
+            saveloadInstance.SaveSaveData();
+        }
+
+    }
 }

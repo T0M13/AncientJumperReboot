@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\Level\LevelGenerator.cs" />
     <Compile Include="Assets\Imported Assets\Nicrom\PaletteModifier\Assets\Scripts\Core\CustomGrid.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjectScripts\PlatformScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Level\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\DeathAreaManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Assets\Scripts\ScriptableHolder.cs" />
     <Compile Include="Assets\Imported Assets\Nicrom\PaletteModifier\Assets\Scripts\Core\TextureGrid.cs" />
     <Compile Include="Assets\Imported Assets\UltimateCircularHealthbars\Scripts\ISegmentedHealthBar.cs" />
-    <Compile Include="Assets\Scripts\Level\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\SpikeyPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Imported Assets\Cainos\Pixel Art Icon Pack - RPG\Shader\SH UI Icon Outline Color.shader" />

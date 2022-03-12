@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     PlayerManager playerManager;
     Rigidbody2D rbody;
-    [SerializeField] private float speed = 15f;
+    [SerializeField] private float speed = 750f;
 
     private void Awake()
     {
@@ -25,18 +25,18 @@ public class PlayerController : MonoBehaviour
 
     void UpdateInput()
     {
-        if(playerManager.canMove)
+        if (playerManager.canMove)
         {
             Vector3 tilt = new Vector3(Input.acceleration.x, 0.0f, 0.0f);
             Vector2 velocity = rbody.velocity;
-            velocity.x = tilt.x * speed;
+            velocity.x = tilt.x * speed * Time.deltaTime;
             rbody.velocity = velocity;
         }
     }
 
     void CheckFall()
     {
-        if(playerManager.highscore > transform.position.y)
+        if (playerManager.highscore > transform.position.y)
         {
             playerManager.isFalling = true;
         }

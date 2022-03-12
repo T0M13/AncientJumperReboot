@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using RengeGames.HealthBars;
 using UnityEngine;
 
 public class Example : MonoBehaviour

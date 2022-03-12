@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RengeGames.HealthBars {
+
 
 	public interface ISegmentedHealthBar {
 		/// <summary>
@@ -33,5 +33,5 @@ namespace RengeGames.HealthBars {
 		/// <param name="value">percentage to add(+)/remove(-) from/to the health bar</param>
 		void AddRemovePercent(float value);
 		
-	}
+	
 }
