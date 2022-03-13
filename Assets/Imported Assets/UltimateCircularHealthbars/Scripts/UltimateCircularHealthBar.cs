@@ -216,7 +216,7 @@ using UnityEngine.UI;
         }
 
         public void SetRemovedSegments(float value) {
-            RemovedSegments += Mathf.Clamp(value, 0, SegmentCount);
+            RemovedSegments = Mathf.Clamp(value, 0, SegmentCount);
         }
 
         public void SetPercent(float value) {

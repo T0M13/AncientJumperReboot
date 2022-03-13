@@ -10,8 +10,10 @@ public class LevelGenerator : MonoBehaviour
     public Transform baseGround;
 
     public List<GameObject> platforms;
+    public List<GameObject> despawnedPlatforms;
 
     public int numberOfPlatforms;
+    public int numberOfDespawnedPlatforms;
     public float levelWidth;
     [SerializeField] private float levelWidthOffset = 1.5f;
     public float minY;
@@ -40,8 +42,20 @@ public class LevelGenerator : MonoBehaviour
         {
             SpawnPlatforms();
         }
+    }
+
+    private void Update()
+    {
+        CheckToReposition();
+    }
 
 
+
+    public void SpawnPlatforms()
+    {
+        RandomizePlatforms();
+
+        CreatePlatform();
     }
 
     public void RandomizePlatforms()
@@ -78,13 +92,6 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    public void SpawnPlatforms()
-    {
-        RandomizePlatforms();
-
-        CreatePlatform();
-    }
-
     public void CreatePlatform()
     {
         GameObject platformPrefab = platformList.platformHolder.platformScriptableObject[platformIndex].platformPrefab;
@@ -95,12 +102,27 @@ public class LevelGenerator : MonoBehaviour
         platformClone.transform.parent = platformParent;
     }
 
+    public void DespawnPlatform(GameObject _platform)
+    {
+        despawnedPlatforms.Add(_platform);
+        _platform.SetActive(false);
+    }
+
+    public void CheckToReposition()
+    {
+        if (despawnedPlatforms.Count > numberOfDespawnedPlatforms)
+        {
+            var randomPlatform = despawnedPlatforms[Random.Range(0, despawnedPlatforms.Count)];
+            RepositionPlatform(randomPlatform);
+            despawnedPlatforms.Remove(randomPlatform);
+        }
+    }
+
+
     public void RepositionPlatform(GameObject _platform)
     {
-        RandomizePlatforms();
+        platformIndex = (int)_platform.GetComponent<Platform>().platformObject.platformType;
         _platform.SetActive(true);
-        var platformList = gameManager.GetComponent<ScriptableHolder>();
-        GameObject platformPrefab = platformList.platformHolder.platformScriptableObject[platformIndex].platformPrefab;
         spawnPosition.y += Random.Range(minY, maxY);
         spawnPosition.x = Random.Range(-levelWidth, levelWidth);
         _platform.transform.position = spawnPosition;

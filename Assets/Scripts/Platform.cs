@@ -26,7 +26,8 @@ public class Platform : MonoBehaviour
             }
             else
             {
-                levelGenerator.RepositionPlatform(this.gameObject);
+                //levelGenerator.RepositionPlatform(this.gameObject);
+                levelGenerator.DespawnPlatform(this.gameObject);
             }
         }
     }
@@ -41,6 +42,11 @@ public class Platform : MonoBehaviour
         {
             //coming from the bottom
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        collision.gameObject.GetComponent<PlayerManager>().isFalling = false;
     }
 
     protected virtual void AddForceUp(Collision2D collision)

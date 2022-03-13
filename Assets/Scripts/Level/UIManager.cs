@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI highscoreUI;
     public Transform gameOverCanvas;
     public TextMeshProUGUI gameOverHighscore;
+    public Transform pauseCanvas;
 
     [Header("Main Menu")]
     public TextMeshProUGUI mainMenuHighscore;

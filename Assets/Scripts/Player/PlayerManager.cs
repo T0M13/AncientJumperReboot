@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PlayerManager : BaseCharacterManager
 {
+    [Header("Highscore")]
     public float highscore;
+    [Header("Coins")]
     public int coins;
     private GameManager gameManager;
     private UIManager uiManager;
+    [Header("References")]
     public UltimateCircularHealthBar healthBar;
-
+    [Header("Player Screen Bounds")]
     [SerializeField] private float bounds;
     [SerializeField] private Vector3 position;
+    [Header("Animation")]
+    public Sprite jumpSprite;
+    public Sprite midAirSprite;
+    public Sprite landingSprite;
+    public SpriteRenderer playerMesh;
 
     private void Awake()
     {
@@ -28,6 +36,7 @@ public class PlayerManager : BaseCharacterManager
 
         canMove = true;
         bounds = (gameManager.GetScreenWidth(gameManager.screenWidth) / 2);
+        playerMesh = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
     }
 
@@ -37,6 +46,7 @@ public class PlayerManager : BaseCharacterManager
         CheckBounds();
         UpdateUI();
         CheckHealth();
+
     }
 
     /// <summary>
@@ -95,4 +105,5 @@ public class PlayerManager : BaseCharacterManager
 
         gameManager.GameOver(highscore);
     }
+
 }

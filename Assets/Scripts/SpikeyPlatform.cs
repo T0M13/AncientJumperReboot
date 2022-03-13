@@ -25,12 +25,11 @@ public class SpikeyPlatform : Platform
         {
             var playerManager = collision.gameObject.GetComponent<PlayerManager>();
             playerManager.health -= platformObject.damage;
-            playerManager.healthBar.SetRemovedSegments(platformObject.damage);
+            playerManager.healthBar.AddRemoveSegments(platformObject.damage);
             var playerMesh = collision.transform.GetChild(0).GetComponent<SpriteRenderer>();
             StartCoroutine(SwitchColor(playerMesh));
 
         }
-
     }
 
     IEnumerator SwitchColor(SpriteRenderer mesh)
@@ -40,5 +39,26 @@ public class SpikeyPlatform : Platform
         mesh.color = normalColor;
     }
 
+    protected override void AddForceUp(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            var playerManager = collision.gameObject.GetComponent<PlayerManager>();
+            if (playerManager.health <= 1)
+            {
+                Rigidbody2D rigidbody = playerManager.GetComponent<Rigidbody2D>();
+                if (rigidbody != null)
+                {
+                    Vector2 velocity = rigidbody.velocity;
+                    velocity.y = platformObject.jumpForce / 4;
+                    rigidbody.velocity = velocity;
 
+                }
+            }
+            else
+            {
+                base.AddForceUp(collision);
+            }
+        }
+    }
 }

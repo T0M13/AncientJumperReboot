@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public float screenHeight;
     public float screenWidth;
     public bool inMainMenu;
+    public bool isPaused;
 
     private void Awake()
     {
@@ -29,6 +30,19 @@ public class GameManager : MonoBehaviour
 
         screenWidth = GetScreenWidth(screenWidth);
         screenHeight = GetScreenHeight(screenHeight);
+    }
+
+    private void Update()
+    {
+        CheckScreenTouch();
+    }
+
+    public void CheckScreenTouch()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            PauseGame();
+        }
     }
 
     /// <summary>
@@ -67,6 +81,20 @@ public class GameManager : MonoBehaviour
         height = edgeVector.y * 2;
         return height;
 
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        uiManager.pauseCanvas.gameObject.SetActive(true);
+        isPaused = true;
+    }
+
+    public void ResumGame()
+    {
+        Time.timeScale = 1;
+        uiManager.pauseCanvas.gameObject.SetActive(false);
+        isPaused = false;
     }
 
     public void SaveData(PlayerManager playerManager)
